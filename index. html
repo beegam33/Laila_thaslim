@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Laila & Thaslim — Wedding Invitation</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: white;
+  color: #111;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.page {
+  width: 100%;
+  max-width: 700px;
+  margin: auto;
+}
+
+.page img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* COUNTDOWN */
+
+.countdown {
+  text-align: center;
+  padding: 45px 12px 25px;
+}
+
+.title {
+  font-size: 17px;
+  letter-spacing: 4px;
+  margin-bottom: 25px;
+}
+
+.timer {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.box {
+  min-width: 65px;
+}
+
+.number {
+  font-size: 34px;
+}
+
+.label {
+  margin-top: 8px;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.line {
+  font-size: 28px;
+  opacity: 0.4;
+}
+
+.date {
+  margin-top: 25px;
+  font-size: 17px;
+  letter-spacing: 4px;
+}
+
+.time {
+  margin-top: 8px;
+  font-size: 11px;
+  letter-spacing: 3px;
+}
+
+@media (max-width: 400px) {
+
+  .title {
+    font-size: 14px;
+    letter-spacing: 3px;
+  }
+
+  .box {
+    min-width: 55px;
+  }
+
+  .number {
+    font-size: 27px;
+  }
+
+  .label {
+    font-size: 8px;
+  }
+
+  .line {
+    font-size: 22px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div class="page">
+  <img src="page1.png" alt="Laila and Thaslim">
+</div>
+
+
+<!-- PAGE 2 -->
+<div class="page">
+  <img src="page2.png" alt="Wedding details">
+</div>
+
+
+<!-- PAGE 3 -->
+<div class="page">
+
+  <!-- LIVE COUNTDOWN -->
+  <div class="countdown">
+
+    <div class="title">
+      COUNTDOWN TO FOREVER
+    </div>
+
+    <div class="timer">
+
+      <div class="box">
+        <div class="number" id="days">00</div>
+        <div class="label">DAYS</div>
+      </div>
+
+      <div class="line">|</div>
+
+      <div class="box">
+        <div class="number" id="hours">00</div>
+        <div class="label">HOURS</div>
+      </div>
+
+      <div class="line">|</div>
+
+      <div class="box">
+        <div class="number" id="minutes">00</div>
+        <div class="label">MIN</div>
+      </div>
+
+      <div class="line">|</div>
+
+      <div class="box">
+        <div class="number" id="seconds">00</div>
+        <div class="label">SEC</div>
+      </div>
+
+    </div>
+
+    <div class="date">
+      SEP 20, 2026
+    </div>
+
+    <div class="time">
+      11 AM ONWARDS
+    </div>
+
+  </div>
+
+  <!-- YOUR CANVA ILLUSTRATION -->
+  <img src="page3.png" alt="Wedding illustration">
+
+</div>
+
+
+<!-- PAGE 4 -->
+<div class="page">
+  <img src="page4.png" alt="Wedding message">
+</div>
+
+
+<script>
+
+const weddingDate =
+  new Date("2026-09-20T11:00:00+05:30").getTime();
+
+function countdown() {
+
+  const now = new Date().getTime();
+  const difference = weddingDate - now;
+
+  if (difference <= 0) {
+    document.getElementById("days").textContent = "00";
+    document.getElementById("hours").textContent = "00";
+    document.getElementById("minutes").textContent = "00";
+    document.getElementById("seconds").textContent = "00";
+    return;
+  }
+
+  const days = Math.floor(
+    difference / (1000 * 60 * 60 * 24)
+  );
+
+  const hours = Math.floor(
+    (difference / (1000 * 60 * 60)) % 24
+  );
+
+  const minutes = Math.floor(
+    (difference / (1000 * 60)) % 60
+  );
+
+  const seconds = Math.floor(
+    (difference / 1000) % 60
+  );
+
+  document.getElementById("days").textContent =
+    String(days).padStart(2, "0");
+
+  document.getElementById("hours").textContent =
+    String(hours).padStart(2, "0");
+
+  document.getElementById("minutes").textContent =
+    String(minutes).padStart(2, "0");
+
+  document.getElementById("seconds").textContent =
+    String(seconds).padStart(2, "0");
+}
+
+countdown();
+
+setInterval(countdown, 1000);
+
+</script>
+
+</body>
+</html>
